@@ -5,10 +5,7 @@ from stockfish import Stockfish
 app = Flask(__name__)
 CORS(app)
 
-STOCKFISH_PATH = "./stockfish/stockfish.exe"
-
-engine = Stockfish(path=STOCKFISH_PATH)
-engine.set_skill_level(10)
+engine = Stockfish(path="/usr/games/stockfish")
 
 @app.route("/bestmove", methods=["POST"])
 def bestmove():
