@@ -2,7 +2,5 @@ services:
   - type: web
     name: chess-bot
     runtime: python
-    packages:
-      - stockfish
-    buildCommand: pip install -r requirements.txt
+    buildCommand: bash build.sh
     startCommand: gunicorn app:app
