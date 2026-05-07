@@ -2,5 +2,12 @@ services:
   - type: web
     name: chess-bot
     runtime: python
-    buildCommand: bash build.sh
+    buildCommand: |
+      pip install -r requirements.txt &&
+      wget -q https://github.com/official-stockfish/Stockfish/releases/download/sf_16/stockfish-ubuntu-x86-64.tar &&
+      tar -xf stockfish-ubuntu-x86-64.tar &&
+      find . -name "stockfish*" -not -name "*.tar" -type f -exec cp {} ./stockfish_bin \; &&
+      chmod +x ./stockfish_bin &&
+      echo "Done. Binary exists:" &&
+      ls -la ./stockfish_bin
     startCommand: gunicorn app:app
