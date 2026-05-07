@@ -1,10 +1,14 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from stockfish import Stockfish
+import shutil
 
-engine = Stockfish()  # no path neededk
 app = Flask(__name__)
 CORS(app)
+
+# Find stockfish binary wherever it's installed
+stockfish_path = shutil.which("stockfish") or "/usr/games/stockfish"
+engine = Stockfish(path=stockfish_path)
 
 @app.route("/bestmove", methods=["POST"])
 def bestmove():
