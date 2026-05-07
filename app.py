@@ -4,8 +4,7 @@ from stockfish import Stockfish
 import os
 
 app = Flask(__name__)
-CORS(app)
-
+CORS(app, resources={r"/*": {"origins": "*"}})
 # Stockfish path
 STOCKFISH_PATH = "/opt/render/project/src/stockfish_bin"
 
